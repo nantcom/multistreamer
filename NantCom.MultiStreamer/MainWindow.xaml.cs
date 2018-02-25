@@ -90,10 +90,13 @@ namespace NantCom.MultiStreamer
 
         private async void StartStreamer_Click(object sender, RoutedEventArgs e)
         {
-            if (ProjectData.Default.IsObsRunning)
+            if (Properties.Settings.Default.IsStartOBS)
             {
-                MessageBox.Show("OBS is running, please close it first", "Sorry!", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
+                if (ProjectData.Default.IsObsRunning)
+                {
+                    MessageBox.Show("OBS is running, please close it first", "Sorry!", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
             }
 
             this.IsEnabled = false;

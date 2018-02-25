@@ -656,8 +656,11 @@ pause
         /// </summary>
         public async Task Start()
         {
-            await this.StartOBS(this.OBSProfileSelected);
-            
+            if (DotNetSettings.Default.IsStartOBS)
+            {
+                await this.StartOBS(this.OBSProfileSelected);
+            }
+
             await this.NginxStart();
 
             await this.FFMpegStart();

@@ -82,5 +82,17 @@ namespace NantCom.MultiStreamer.Properties {
                 this["IsLicenseAcknowledged"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool IsStartOBS {
+            get {
+                return ((bool)(this["IsStartOBS"]));
+            }
+            set {
+                this["IsStartOBS"] = value;
+            }
+        }
     }
 }
