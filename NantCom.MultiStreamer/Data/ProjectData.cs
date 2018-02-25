@@ -154,6 +154,14 @@ namespace NantCom.MultiStreamer.Data
             }
         }
 
+        public bool IsOBSAvailable
+        {
+            get
+            {
+                return  Directory.Exists(this.OBSProfileFolder);
+            }
+        }
+
         /// <summary>
         /// Lists the obs profile
         /// </summary>

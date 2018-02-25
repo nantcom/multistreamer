@@ -143,7 +143,7 @@
                     <StackPanel Orientation="Vertical" Margin="0,0,0,20">
                         <TextBlock TextWrapping="Wrap" Margin="0,0,10,0"><Run Text="We use "/><Hyperlink TargetName="https://www.ffmpeg.org/" Click="Hyperlink_Click" ><Run Text="ffmpeg"/></Hyperlink><Run Text=" and "/><Hyperlink TargetName="https://github.com/illuspas/nginx-rtmp-win32" Click="Hyperlink_Click"><Run Text="nginx-rtmp-win32"/></Hyperlink><Run Text=", please refer to respective projects for their License Information. This app does not include any source code or binaries from either project and their respective binaries are downloaded on your behalf when you click &quot;Setup + Start&quot;."/></TextBlock>
                     </StackPanel>
-                    <CheckBox Content="Start OBS" Margin="0,5,443,0" IsChecked="{Binding Settings.IsStartOBS}" FontSize="14"/>
+                    <CheckBox Content="Start OBS" Margin="0,5,443,0" IsChecked="{Binding Settings.IsStartOBS}" FontSize="14" IsEnabled="{Binding IsOBSAvailable, Mode=OneWay}"/>
                     <TextBlock TextWrapping="Wrap" Margin="95,-17,0,0"><Run Text="OBS Profile"/><Run Text=" "/><Hyperlink Click="Hyperlink_Click" TargetName="https://obsproject.com/help"><Run Text="(What is it?)"/></Hyperlink></TextBlock>
                     <ComboBox Margin="0,5,0,0" ItemsSource="{Binding OBSProfiles}" SelectedItem="{Binding OBSProfileSelected}" IsEnabled="{Binding Settings.IsStartOBS}"/>
                     <TextBlock TextWrapping="Wrap" Text="Facebook Live Bitrate" Margin="0,10,0,0"/>
