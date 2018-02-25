@@ -574,6 +574,12 @@ pause
 
         #region VLC
         
+        public bool IsDownloadingVLC
+        {
+            get;
+            set;
+        }
+
         /// <summary>
         /// Whether VLC is available
         /// </summary>
@@ -586,7 +592,7 @@ pause
                     return true;
                 }
 
-                var vlcFolder = Path.Combine(this.CurrentFolder, "vlc -2.2.8");
+                var vlcFolder = Path.Combine(this.CurrentFolder, "vlc-2.2.8");
                 return Directory.Exists(vlcFolder);
             }
         }
@@ -598,7 +604,17 @@ pause
         {
             get
             {
-                return this.IsVLCAvailale == false;
+                if (this.IsVLCAvailale)
+                {
+                    return false;
+                }
+
+                if (this.IsDownloadingVLC)
+                {
+                    return false;
+                }
+
+                return true;
             }
         }
         
@@ -647,13 +663,23 @@ pause
                 return;
             }
 
+            if (this.IsDownloadingVLC)
+            {
+                return;
+            }
+
+            this.IsDownloadingVLC = true;
+
             var vlcFolder = Path.Combine(this.CurrentFolder, "vlc-2.2.8");
             if (Directory.Exists(vlcFolder) == false)
             {
                 await this.DownloadAndExtract("http://download.videolan.org/pub/videolan/vlc/last/win32/vlc-2.2.8-win32.zip");
             }
 
+            this.IsDownloadingVLC = false;
+
             this.OnPropertyChanged("IsVLCAvailale");
+            this.OnPropertyChanged("IsNeedToDownloadVLC");
         }
 
 
