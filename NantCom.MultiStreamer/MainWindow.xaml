@@ -116,7 +116,7 @@
                             <Image RenderOptions.BitmapScalingMode="HighQuality" Source="Images/YouTube_logo_2017.png" Margin="10" Tag="https://www.youtube.com/channel/UCDMxlwKhzYlRAgkT-BDuTwg?view_as=subscriber" MouseLeftButtonUp="Image_Click"/>
                         </Border>
                         <Image RenderOptions.BitmapScalingMode="HighQuality" Source="Images/Twitch_icon.png" HorizontalAlignment="Center" Grid.Column="2" Margin="10,0,0,0" Tag="https://www.twitch.tv/level51pc" MouseLeftButtonUp="Image_Click"/>
-                        <Image RenderOptions.BitmapScalingMode="HighQuality" Source="Images/Twitter_2012.png" HorizontalAlignment="Center" Grid.Column="3" Margin="10,0,0,0" Tag="twitter.com/level51pc" MouseLeftButtonUp="Image_Click" Width="35"/>
+                        <Image RenderOptions.BitmapScalingMode="HighQuality" Source="Images/Twitter_2012.png" HorizontalAlignment="Center" Grid.Column="3" Margin="10,0,0,0" Tag="https://twitter.com/level51pc" MouseLeftButtonUp="Image_Click" Width="35"/>
                         <Image RenderOptions.BitmapScalingMode="HighQuality" HorizontalAlignment="Right" VerticalAlignment="Top" Source="Images/Logo-text-2016-01.png" Grid.Column="4" MouseLeftButtonUp="Image_Click" Tag="http://www.level51pc.com"/>
 
                     </Grid>
