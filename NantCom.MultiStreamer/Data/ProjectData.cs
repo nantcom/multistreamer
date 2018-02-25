@@ -162,8 +162,9 @@ namespace NantCom.MultiStreamer.Data
             await Task.Run(() =>
             {
                 this.OBSProfiles = Directory.GetDirectories(this.OBSProfileFolder).Select(s => Path.GetFileName(s)).ToArray();
-
                 this.OnPropertyChanged("OBSProfiles");
+
+                this.OBSProfileSelected = this.OBSProfiles.FirstOrDefault();
             });
         }
 

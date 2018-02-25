@@ -8,7 +8,7 @@
         xmlns:Data="clr-namespace:NantCom.MultiStreamer.Data" x:Class="NantCom.MultiStreamer.MainWindow"
         xmlns:Vlc="clr-namespace:Vlc.DotNet.Wpf;assembly=Vlc.DotNet.Wpf"
         mc:Ignorable="d"
-        Title="NantCom's Multi Streamer" FontFamily="/NantCom.MultiStreamer;component/Fonts/#Cloud Light" FontSize="14" MinHeight="550" MinWidth="640" Width="532" >
+        Title="NantCom's Multi Streamer" FontFamily="/NantCom.MultiStreamer;component/Fonts/#Cloud Light" FontSize="14" MinHeight="600" MinWidth="680" Width="680" Height="600" >
     <Controls:MetroWindow.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         <DataTemplate x:Key="TabHeader">
@@ -99,17 +99,34 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-        <TabControl x:Name="MainTab" Margin="20" SelectionChanged="TabControl_SelectionChanged">
+        <TabControl x:Name="MainTab" Margin="100,20,20,20" SelectionChanged="TabControl_SelectionChanged">
             <TabItem Header="ABOUT" HeaderTemplate="{DynamicResource TabHeader}">
                 <StackPanel Margin="20,0,0,0">
-                    <TextBlock TextWrapping="Wrap" Margin="0,0,10,0"><Run Text="This application allows you to use Open Broadcaster Software (OBS) to steam to Twitch, Facebook Live and YouTube Live all at the same time!"/><LineBreak/><Run/><LineBreak/><Run Text="This app is inspired by "/><Hyperlink FontWeight="Bold" TargetName="https://obsproject.com/forum/resources/how-to-set-up-your-own-private-rtmp-server-using-nginx.50/"><Run Text="this great guide"/></Hyperlink><Run Text=" and after fiddling with lots of stuffs for a few days, I have managed to get everything working. But it requires very complicated setup, I decided to create an app which does all that stuffs so every streamer can benefit from my newly gained 'art of streaming' skill."/><LineBreak/><Run/><LineBreak/><Run Text="Check out my Custom Laptop Brand: "/><Hyperlink Foreground="#FF6D6D6D" FontWeight="Bold" TargetName="https://obsproject.com/forum/resources/how-to-set-up-your-own-private-rtmp-server-using-nginx.50/" TextDecorations="Underline"><Run Text="LEVEL51"/></Hyperlink><LineBreak/><Run Text="Our Twitch Channel (Thai Language):"/></TextBlock>
+                    <TextBlock TextWrapping="Wrap" Margin="0,0,10,0"><Run Text="This FREE and "/><Hyperlink TargetName="https://github.com/nantcom/multistreamer" Click="Hyperlink_Click"><Run Text="Open Source"/></Hyperlink><Run Text=" "/><Run Text="app allows you to use Open Broadcaster Software (OBS) to steam to Twitch, Facebook Live and YouTube Live all at the same time! it was inspired by "/><Hyperlink Click="Hyperlink_Click" TargetName="https://obsproject.com/forum/resources/how-to-set-up-your-own-private-rtmp-server-using-nginx.50/"><Run Text="this great guide"/></Hyperlink><Run Text=". However, after I have fiddled with lots of stuffs for a few days, everything start to magically working but it requires lots of button clicks and configuration files. To remove this technological barrier, I decided to create this app so every streamer can benefit from my newly gained 'art of streaming' skill. ;)"/><LineBreak/><Run/><LineBreak/><Run Text="This app is made possible by LEVEL51 (full disclosure: I'm the owner of this company, and this company pay my bills! ~ so it is technically my sponsor :D). "/><LineBreak/><Run/><LineBreak/><Run Text="LEVEL51 builds premium custom gaming laptop and PC and is available in Thailand, Malaysia, Singapore and soon Nepal."/><LineBreak/><Run/><LineBreak/><Run Text="Check out our website at: "/><Hyperlink TargetName="http://www.level51pc.com" Click="Hyperlink_Click"><Run Text="http://www.level51pc.com"/></Hyperlink><Run Text=" "/><Run Text="and follow us on social media here:"/></TextBlock>
+                    <Grid HorizontalAlignment="Left" Margin="0,10,0,0" Height="32" Cursor="Hand">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Image RenderOptions.BitmapScalingMode="HighQuality" Source="Images/Facebook_icon_2009.png" HorizontalAlignment="Center" Tag="http://www.facebook.com/level51pc" MouseLeftButtonUp="Image_Click"/>
+                        <Border HorizontalAlignment="Center" Grid.Column="1" Background="White" Margin="10,0,0,0">
+                            <Image RenderOptions.BitmapScalingMode="HighQuality" Source="Images/YouTube_logo_2017.png" Margin="10" Tag="https://www.youtube.com/channel/UCDMxlwKhzYlRAgkT-BDuTwg?view_as=subscriber" MouseLeftButtonUp="Image_Click"/>
+                        </Border>
+                        <Image RenderOptions.BitmapScalingMode="HighQuality" Source="Images/Twitch_icon.png" HorizontalAlignment="Center" Grid.Column="2" Margin="10,0,0,0" Tag="https://www.twitch.tv/level51pc" MouseLeftButtonUp="Image_Click"/>
+                        <Image RenderOptions.BitmapScalingMode="HighQuality" Source="Images/Twitter_2012.png" HorizontalAlignment="Center" Grid.Column="3" Margin="10,0,0,0" Tag="twitter.com/level51pc" MouseLeftButtonUp="Image_Click" Width="35"/>
+                        <Image RenderOptions.BitmapScalingMode="HighQuality" HorizontalAlignment="Right" VerticalAlignment="Top" Source="Images/Logo-text-2016-01.png" Grid.Column="4" MouseLeftButtonUp="Image_Click" Tag="http://www.level51pc.com"/>
 
+                    </Grid>
+                    
                 </StackPanel>
             </TabItem>
 
             <TabItem Header="KEYS" HeaderTemplate="{DynamicResource TabHeader}">
                 <StackPanel Margin="20,0,0,0">
-                    <TextBlock TextWrapping="Wrap" Margin="0,0,10,0" Text="Please provide your stream keys for each service here, just leave it blank if you don't want to use any of them. You can leave all of them blank but your stream wont go anywhere."/>
+                    <TextBlock TextWrapping="Wrap" Margin="0,0,10,0" Text="Please provide your stream keys for each service here, just leave it blank if you don't want to use the service. You can leave all of them blank but your stream won't go anywhere."/>
 
                     <TextBlock TextWrapping="Wrap" Margin="0,10,0,0"><Run Text="Facebook Stream Key"/><Run Text=" "/><Hyperlink Click="Hyperlink_Click" TargetName="http://www.level51pc.com/blogs/multistreamer#facebook"><Run Text="(Get Key)"/></Hyperlink></TextBlock>
                     <TextBox Text="{Binding Settings.FacebookStreamKey}" Margin="0,5,0,0"/>
@@ -123,30 +140,27 @@
             </TabItem>
             <TabItem Header="LIVE!" HeaderTemplate="{DynamicResource TabHeader}">
                 <StackPanel Margin="20,0,0,0">
-                    <TextBlock TextWrapping="Wrap" Margin="0,10,10,0" Text="We use ffmpeg and nginx-rtmp-win32, please refer to respective projects for License Information. This program does not include any binaries from either project and their respective binaries are downloaded on your behalf when you click &quot;Setup + Start&quot;."/>
-                    <TextBlock TextWrapping="Wrap" Margin="0,10,0,0"><Run Text="OBS Profile"/><Run Text=" "/><Hyperlink Click="Hyperlink_Click" TargetName="https://obsproject.com/help"><Run Text="(What is it?)"/></Hyperlink></TextBlock>
+                    <StackPanel Orientation="Vertical" Margin="0,0,0,20">
+                        <TextBlock TextWrapping="Wrap" Margin="0,0,10,0"><Run Text="We use "/><Hyperlink TargetName="https://www.ffmpeg.org/" Click="Hyperlink_Click" ><Run Text="ffmpeg"/></Hyperlink><Run Text=" and "/><Hyperlink TargetName="https://github.com/illuspas/nginx-rtmp-win32" Click="Hyperlink_Click"><Run Text="nginx-rtmp-win32"/></Hyperlink><Run Text=", please refer to respective projects for their License Information. This app does not include any source code or binaries from either project and their respective binaries are downloaded on your behalf when you click &quot;Setup + Start&quot;."/></TextBlock>
+                    </StackPanel>
+                    <TextBlock TextWrapping="Wrap" Margin="0"><Run Text="OBS Profile"/><Run Text=" "/><Hyperlink Click="Hyperlink_Click" TargetName="https://obsproject.com/help"><Run Text="(What is it?)"/></Hyperlink></TextBlock>
                     <ComboBox Margin="0,5,0,0" ItemsSource="{Binding OBSProfiles}" SelectedItem="{Binding OBSProfileSelected}"/>
                     <TextBlock TextWrapping="Wrap" Text="Facebook Live Bitrate" Margin="0,10,0,0"/>
-                    <TextBlock TextWrapping="Wrap" Margin="0,-18,0,0" HorizontalAlignment="Right">
-                        <Run Text="{Binding Settings.FacebookBitRate}"></Run>
-                        <Run>
-                            Kbps
-                        </Run>
-                    </TextBlock>
+                    <TextBlock TextWrapping="Wrap" Margin="0,-18,0,0" HorizontalAlignment="Right"><Run Text="{Binding Settings.FacebookBitRate}"/><Run Text=" "/><Run Text="Kbps"/></TextBlock>
                     <Slider  Style="{DynamicResource FlatSlider}" Maximum="4000" Minimum="1000" SmallChange="1000" TickPlacement="BottomRight" TickFrequency="1000" AutoToolTipPlacement="BottomRight" LargeChange="1000" Margin="0,5,0,0" Value="{Binding Settings.FacebookBitRate}"/>
                     <Grid Height="100" Margin="0,20,0,0">
                         <StackPanel Orientation="Horizontal">
                             <StackPanel Orientation="Vertical" Height="100">
-                                <Image HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Source="Images/nginx-card.png" Height="50"/>
+                                <Image RenderOptions.BitmapScalingMode="HighQuality" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Source="Images/nginx-card.png" Height="50"/>
                                 <Ellipse x:Name="IndicatorNginx" Fill="#FF00D63A" Height="25" Stroke="White" Width="25" StrokeThickness="2"/>
                             </StackPanel>
                             <StackPanel x:Name="FeatureFFMpeg" Orientation="Vertical" Height="100" Margin="10,0,0,0">
                                 <Border HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="50">
-                                    <Image Source="Images/ffmpeg.png"/>
+                                    <Image RenderOptions.BitmapScalingMode="HighQuality" Source="Images/ffmpeg.png"/>
                                 </Border>
                                 <Ellipse x:Name="IndicatorFFMpeg" Fill="#FF00D63A" Height="25" Stroke="White" Width="25" StrokeThickness="2"/>
                             </StackPanel>
-                            <Image x:Name="FeatureQSV" Width="100" Source="Images/qsv.png" Margin="10,5,10,10"/>
+                            <Image RenderOptions.BitmapScalingMode="HighQuality"  x:Name="FeatureQSV" Width="100" Source="Images/qsv.png" Margin="10,5,10,10"/>
                         </StackPanel>
                         <StackPanel HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,0,0">
                             <Button Content="Setup + Start" HorizontalAlignment="Right" VerticalAlignment="Top" Width="200" Click="StartStreamer_Click"/>
@@ -180,7 +194,7 @@
             </TabItem>
             <TabItem Header="DONATE" HeaderTemplate="{DynamicResource TabHeader}">
                 <StackPanel Margin="20,0,0,0">
-                    <TextBlock TextWrapping="Wrap" Margin="0,0,10,0" Text="If you found it useful and wish to give some thanks - you can buy me a beer via this BTC and ETH address:"/>
+                    <TextBlock TextWrapping="Wrap" Margin="0,0,10,0"><Run Text="If you found this app to be useful and wish to give some thanks (besides buying or recommending our laptops :) you can also donate to this BTC and ETH address."/><LineBreak/><Run/><LineBreak/><Run Text="All donations will be given to our colleague who is now a Buddhist Monk (for 3 years already!) and he is actively participate in many charitable events for Buddhist temples throughout Thailand. Please email your TX ID and amount to donations@nant.co and we will list your contributions in this app's homepage."/></TextBlock>
                     <Grid Height="250" Background="White" Margin="0,10,0,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*"/>
@@ -198,6 +212,15 @@
         </TabControl>
         <ProgressBar Height="10" Margin="0" VerticalAlignment="Top" Maximum="1" SmallChange="0.05" Value="{Binding StatusProgress}" Background="{x:Null}" BorderBrush="{x:Null}" IsIndeterminate="{Binding StatusUnknown}"/>
         <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding StatusText}" VerticalAlignment="Top" Margin="10,10,0,0" FontSize="8" Foreground="#FF616161"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Margin="10,0,0,0" Width="60">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFFFDA00" Offset="1"/>
+                    <GradientStop Color="#FFAE8A00"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+        <Image RenderOptions.BitmapScalingMode="HighQuality" HorizontalAlignment="Left" Height="70" VerticalAlignment="Top" Width="70" Source="Images/logo-ffda00.png" Margin="20,15,0,0"/>
 
     </Grid>
 </Controls:MetroWindow>

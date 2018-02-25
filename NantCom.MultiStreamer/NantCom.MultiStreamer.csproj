@@ -181,9 +181,16 @@
     <Resource Include="Images\qsv.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\Facebook_icon_2009.png" />
+    <Resource Include="Images\LEVEL51-Logo2016-square-01.png" />
+    <Resource Include="Images\Logo-text-2016-01.png" />
+    <Resource Include="Images\logo-ffda00.png" />
     <Content Include="Images\test.mp4">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Images\Twitch_icon.png" />
+    <Resource Include="Images\Twitter_2012.png" />
+    <Resource Include="Images\YouTube_logo_2017.png" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="MSHTML">

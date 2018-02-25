@@ -14,5 +14,8 @@
     <Setting Name="FacebookBitRate" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">4000</Value>
     </Setting>
+    <Setting Name="IsLicenseAcknowledged" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

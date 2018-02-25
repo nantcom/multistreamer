@@ -41,6 +41,10 @@ namespace NantCom.MultiStreamer
             };
         }
 
+        private void Image_Click(object sender, MouseButtonEventArgs e)
+        {
+            Process.Start((sender as FrameworkElement).Tag.ToString());
+        }
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
         {
             Process.Start((sender as Hyperlink).TargetName);
@@ -130,9 +134,18 @@ namespace NantCom.MultiStreamer
 
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (sender != this.MainTab)
+            {
+                return;
+            }
+
+            if (this.VLCFacebook == null)
+            {
+                return;
+            }
+
             if (this.MainTab.SelectedIndex == 3)
             {
-
                 this.RTMPStat.Navigate("http://localhost:8080/stat");
             }
 
@@ -179,5 +192,6 @@ body {
             }
 
         }
+
     }
 }
