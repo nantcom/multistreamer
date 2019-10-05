@@ -8,7 +8,7 @@
         xmlns:Data="clr-namespace:NantCom.MultiStreamer.Data" x:Class="NantCom.MultiStreamer.MainWindow"
         xmlns:Vlc="clr-namespace:Vlc.DotNet.Wpf;assembly=Vlc.DotNet.Wpf"
         mc:Ignorable="d"
-        Title="NantCom's Multi Streamer" FontFamily="/NantCom.MultiStreamer;component/Fonts/#Cloud Light" FontSize="14" MinHeight="600" MinWidth="680" Width="680" Height="681" >
+        Title="LEVEL51's Multi Streamer" FontFamily="/NantCom.MultiStreamer;component/Fonts/#Cloud Light" FontSize="14" MinHeight="600" MinWidth="680" Width="680" Height="681" >
     <Controls:MetroWindow.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         <DataTemplate x:Key="TabHeader">
@@ -146,9 +146,10 @@
                     <CheckBox Content="Start OBS" Margin="0,5,443,0" IsChecked="{Binding Settings.IsStartOBS}" FontSize="14" IsEnabled="{Binding IsOBSAvailable, Mode=OneWay}"/>
                     <TextBlock TextWrapping="Wrap" Margin="95,-17,0,0"><Run Text="OBS Profile"/><Run Text=" "/><Hyperlink Click="Hyperlink_Click" TargetName="https://obsproject.com/help"><Run Text="(What is it?)"/></Hyperlink></TextBlock>
                     <ComboBox Margin="0,5,0,0" ItemsSource="{Binding OBSProfiles}" SelectedItem="{Binding OBSProfileSelected}" IsEnabled="{Binding Settings.IsStartOBS}"/>
-                    <TextBlock TextWrapping="Wrap" Text="Facebook Live Bitrate" Margin="0,10,0,0"/>
+                    <CheckBox Content="Transcode Video for Facebook" Margin="0,15,0,0" IsChecked="{Binding Settings.IsTranscodeFacebook}" FontSize="14" IsEnabled="{Binding IsOBSAvailable, Mode=OneWay}"/>
+                    <TextBlock TextWrapping="Wrap" Text="Facebook Live Bitrate" Margin="0,10,0,0" IsEnabled="{Binding Settings.IsTranscodeFacebook}"/>                    
                     <TextBlock TextWrapping="Wrap" Margin="0,-18,0,0" HorizontalAlignment="Right"><Run Text="{Binding Settings.FacebookBitRate}"/><Run Text=" "/><Run Text="Kbps"/></TextBlock>
-                    <Slider  Style="{DynamicResource FlatSlider}" Maximum="4000" Minimum="1000" SmallChange="1000" TickPlacement="BottomRight" TickFrequency="1000" AutoToolTipPlacement="BottomRight" LargeChange="1000" Margin="0,5,0,0" Value="{Binding Settings.FacebookBitRate}"/>
+                    <Slider  Style="{DynamicResource FlatSlider}" Maximum="4000" Minimum="1000" SmallChange="1000" TickPlacement="BottomRight" TickFrequency="1000" AutoToolTipPlacement="BottomRight" LargeChange="1000" Margin="0,5,0,0" Value="{Binding Settings.FacebookBitRate}" IsEnabled="{Binding Settings.IsTranscodeFacebook}"/>
                     <Grid Height="100" Margin="0,20,0,0">
                         <StackPanel Orientation="Horizontal">
                             <StackPanel Orientation="Vertical" Height="100">
@@ -180,11 +181,13 @@
                             <ColumnDefinition Width="1*"/>
                             <ColumnDefinition Width="1*"/>
                         </Grid.ColumnDefinitions>
-                        <Vlc:VlcControl x:Name="VLCMain" Margin="0,30,0,10"/>
-                        <Vlc:VlcControl x:Name="VLCFacebook" Margin="0,30,0,10" Grid.Column="1"/>
+                        <Vlc:VlcControl x:Name="VLCMain" Margin="0,30,0,25"/>
+                        <Vlc:VlcControl x:Name="VLCFacebook" Margin="0,30,0,25" Grid.Column="1"/>
 
                         <TextBlock TextWrapping="Wrap" Text="Main Stream (Twitch/YouTube)" VerticalAlignment="Top" Background="#FF4B367C" TextAlignment="Center"/>
                         <TextBlock TextWrapping="Wrap" Text="Facebook" VerticalAlignment="Top" Background="#FF4267B2" TextAlignment="Center" Grid.Column="1"/>
+                        <CheckBox Content="Sound" VerticalAlignment="Bottom" Margin="0,0,0,5" Tag="{Binding ElementName=VLCMain, Mode=OneWay}" Click="Sound_Click"/>
+                        <CheckBox Content="Sound" VerticalAlignment="Bottom" Grid.Column="1" Margin="0,0,0,5" Tag="{Binding ElementName=VLCFacebook, Mode=OneWay}" Click="Sound_Click"/>
 
                     </Grid>
                     <StackPanel Margin="0,10,0,0" Visibility="{Binding IsNeedToDownloadVLC, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}">
@@ -219,7 +222,7 @@
                 </LinearGradientBrush>
             </Border.Background>
         </Border>
-        <Image RenderOptions.BitmapScalingMode="HighQuality" HorizontalAlignment="Left" Height="70" VerticalAlignment="Top" Width="70" Source="Images/logo-ffda00.png" Margin="20,10,0,0"/>
+        <Image RenderOptions.BitmapScalingMode="HighQuality" HorizontalAlignment="Left" Height="70" VerticalAlignment="Top" Width="70" Source="Images/LEVEL51-Logo2016-square-01.png" Margin="20,10,0,0"/>
         <ProgressBar Height="5" Margin="0" VerticalAlignment="Top" Maximum="1" SmallChange="0.05" Value="{Binding StatusProgress}" Background="{x:Null}" BorderBrush="{x:Null}" IsIndeterminate="{Binding StatusUnknown}" MinHeight="5"/>
         <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding StatusText}" VerticalAlignment="Top" Margin="105,10,0,0" FontSize="8" Foreground="#FF616161"/>
 

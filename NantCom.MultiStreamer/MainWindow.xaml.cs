@@ -39,6 +39,7 @@ namespace NantCom.MultiStreamer
             {
                 this.RefreshStatus();
             };
+            
         }
 
         private void Image_Click(object sender, MouseButtonEventArgs e)
@@ -196,5 +197,22 @@ body {
 
         }
 
+        private void Sound_Click(object sender, RoutedEventArgs e)
+        {
+            var checkbox = sender as CheckBox;
+            var player = checkbox.Tag as Vlc.DotNet.Wpf.VlcControl;
+            if (player != null)
+            {
+                if (checkbox.IsChecked == true)
+                {
+                    player.MediaPlayer.Audio.Volume = 100;
+                }
+
+                if (checkbox.IsChecked == false)
+                {
+                    player.MediaPlayer.Audio.Volume = 0;
+                }
+            }
+        }
     }
 }

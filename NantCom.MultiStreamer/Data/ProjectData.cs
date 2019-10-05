@@ -169,10 +169,16 @@ namespace NantCom.MultiStreamer.Data
         {
             await Task.Run(() =>
             {
-                this.OBSProfiles = Directory.GetDirectories(this.OBSProfileFolder).Select(s => Path.GetFileName(s)).ToArray();
-                this.OnPropertyChanged("OBSProfiles");
+                try
+                {
+                    this.OBSProfiles = Directory.GetDirectories(this.OBSProfileFolder).Select(s => Path.GetFileName(s)).ToArray();
+                    this.OnPropertyChanged("OBSProfiles");
 
-                this.OBSProfileSelected = this.OBSProfiles.FirstOrDefault();
+                    this.OBSProfileSelected = this.OBSProfiles.FirstOrDefault();
+                }
+                catch (Exception)
+                {
+                }
             });
         }
 
@@ -185,6 +191,14 @@ namespace NantCom.MultiStreamer.Data
             await Task.Run(() =>
             {
                 var profilePath = Path.Combine(this.OBSProfileFolder, this.OBSProfileSelected, "service.json");
+
+                if (!File.Exists( profilePath ))
+                {
+                    MessageBox.Show("Cannot automatically start OBS\r\nPlease run OBS Manually and use rtmp://localhost/ingest as Streaming Server URL and 1 as Stream Key", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        
+                    return;
+                }
+
                 var serviceJson = File.ReadAllText(profilePath);
 
                 dynamic profile = JObject.Parse(serviceJson);
@@ -225,6 +239,7 @@ rtmp {
 
 			%TWITCH%
 			%YOUTUBE%
+			%FACEBOOK_NOTRANSCODE%
         }
 		
         application tofacebook {
@@ -352,11 +367,23 @@ http {
             if (this.IsTestMode == false && !string.IsNullOrEmpty(DotNetSettings.Default.FacebookStreamKey))
             {
                 serviceCount++;
-                sb.Replace("%FACEBOOK%", "push rtmp://live-api.facebook.com:80/rtmp/" + DotNetSettings.Default.FacebookStreamKey + ";");
+
+                if (DotNetSettings.Default.IsTranscodeFacebook)
+                {
+                    sb.Replace("%FACEBOOK%", "push rtmp://live-api.facebook.com:80/rtmp/" + DotNetSettings.Default.FacebookStreamKey + ";");
+                    sb.Replace("%FACEBOOK_NOTRANSCODE%", null);
+                }
+                else
+                {
+                    sb.Replace("%FACEBOOK_NOTRANSCODE%", "push rtmp://live-api.facebook.com:80/rtmp/" + DotNetSettings.Default.FacebookStreamKey + ";");
+                    sb.Replace("%FACEBOOK%", null);
+                }
+
             }
             else
             {
                 sb.Replace("%FACEBOOK%", null);
+                sb.Replace("%FACEBOOK_NOTRANSCODE%", null);
             }
 
             this.SetStatus("Starting Nginx", 0, true);
@@ -651,6 +678,7 @@ pause
 
             _Init.Add(control);
             control.MediaPlayer.Play(new Uri(url));
+            control.MediaPlayer.Audio.Volume = 0;
         }
 
         /// <summary>
@@ -697,7 +725,11 @@ pause
 
             await this.NginxStart();
 
-            await this.FFMpegStart();
+            if (DotNetSettings.Default.IsTranscodeFacebook)
+            {
+                await this.FFMpegStart();
+            }
+
         }
 
         private string CurrentFolder;

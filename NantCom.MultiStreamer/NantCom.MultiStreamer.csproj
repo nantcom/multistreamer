@@ -25,9 +25,13 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>https://level51.blob.core.windows.net/multistreamer/</InstallUrl>
+    <SupportUrl>http://www.level51pc.com/multistreamer</SupportUrl>
+    <ProductName>LEVEL51 Multi-Streamer</ProductName>
+    <PublisherName>NantCom</PublisherName>
+    <SuiteName>LEVEL51</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationRevision>5</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -83,6 +87,9 @@
   </PropertyGroup>
   <PropertyGroup>
     <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Logo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ControlzEx, Version=3.0.2.4, Culture=neutral, processorArchitecture=MSIL">
@@ -213,6 +220,7 @@
     <Resource Include="Images\qsv.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Logo.ico" />
     <Resource Include="Images\Facebook_icon_2009.png" />
     <Resource Include="Images\LEVEL51-Logo2016-square-01.png" />
     <Resource Include="Images\Logo-text-2016-01.png" />
